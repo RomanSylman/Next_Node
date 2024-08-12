@@ -39,6 +39,7 @@ export default function Home() {
     try {
       const response = await axios.post(`${apiUrl}/users`, newUser);
       setUsers([...users, response.data]);
+      setNewUser({ name: "", email: "" });
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +61,27 @@ export default function Home() {
         <h1 className="text-2x1 font-bold text-gray-800 text-center">
           User Managment
         </h1>
+
+        {/* Create user form */}
+
+        <div className="space-y-2 w-full flex flex-col">
+          <input
+            type="text"
+            placeholder="Name"
+            value={newUser.name}
+            onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+            className="rounded-lg shadow-lg p-2 m-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={newUser.email}
+            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+            className="rounded-lg shadow-lg p-2 m-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
+          />
+
+          <button onClick={createUser} className="shadow-lg rouded-lg p-2 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300">Add User</button>
+        </div>
 
         {/* Display all users */}
 
