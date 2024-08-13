@@ -32,7 +32,7 @@ export default function Home() {
       }
     };
     fetchUsers();
-  }, []);
+  }, [apiUrl]);
 
   //create new user
   const createUser = async () => {
@@ -151,11 +151,8 @@ export default function Home() {
         {/* Display all users */}
 
         {users.map((user) => (
-          <div className="space-y-2">
-            <div
-              key={user.id}
-              className="flex items-center justify-between bg-white shadow-lg rounded-lg p-2 mb-2"
-            >
+          <div className="space-y-2" key={user.id}>
+            <div className="flex items-center justify-between bg-white shadow-lg rounded-lg p-2 mb-2">
               <CardComponent card={user} />
               <button
                 onClick={() => deleteUser(user.id)}
