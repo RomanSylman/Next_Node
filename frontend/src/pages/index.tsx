@@ -64,23 +64,23 @@ export default function Home() {
 
         {/* Create user form */}
 
-        <div className="space-y-2 w-full flex flex-col">
+        <div className="space-y-2 w-full flex flex-col bg-blue-100 rounded-lg p-4 gap-3">
           <input
             type="text"
             placeholder="Name"
             value={newUser.name}
             onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-            className="rounded-lg shadow-lg p-2 m-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
+            className="rounded-lg shadow-lg p-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
           />
           <input
             type="email"
             placeholder="Email"
             value={newUser.email}
             onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-            className="rounded-lg shadow-lg p-2 m-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
+            className="rounded-lg shadow-lg p-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
           />
 
-          <button onClick={createUser} className="shadow-lg rouded-lg p-2 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300">Add User</button>
+          <button onClick={createUser} className="shadow-lg rouded-lg p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300">Add User</button>
         </div>
 
         {/* Display all users */}
