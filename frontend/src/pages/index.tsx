@@ -55,6 +55,28 @@ export default function Home() {
     }
   };
 
+  const handleUpdateUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await axios.put(`${apiUrl}/users/${updateUser.id}`, {
+        name: updateUser.name,
+        email: updateUser.email,
+      });
+      setUpdateUser({ id: 0, name: "", email: "" });
+      setUsers(
+        users.map((user) => {
+          if (user.id === updateUser.id) {
+            return { ...user, name: updateUser.name, email: updateUser.email };
+          } else {
+            return user;
+          }
+        })
+      );
+    } catch (error) {
+      console.log("Error updating user", error);
+    }
+  };
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
       <div className="space-y-4 w-full max-w-2xl">
@@ -80,8 +102,51 @@ export default function Home() {
             className="rounded-lg shadow-lg p-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
           />
 
-          <button onClick={createUser} className="shadow-lg rouded-lg p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300">Add User</button>
+          <button
+            onClick={createUser}
+            className="shadow-lg rouded-lg p-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300"
+          >
+            Add User
+          </button>
         </div>
+
+        {/* Update user form */}
+
+        <form
+          onSubmit={handleUpdateUser}
+          className="space-y-2 w-full flex flex-col p-4 bg-green-100 rounded shadow-lg"
+        >
+          <input
+            placeholder="User ID"
+            value={updateUser.id || ""}
+            onChange={(e) =>
+              setUpdateUser({ ...updateUser, id: Number(e.target.value) })
+            }
+            className="rounded-lg shadow-lg p-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
+          />
+
+          <input
+            placeholder="New Name"
+            value={updateUser.name}
+            onChange={(e) =>
+              setUpdateUser({ ...updateUser, name: e.target.value })
+            }
+            className="rounded-lg shadow-lg p-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
+          />
+
+          <input
+            placeholder="New Email"
+            value={updateUser.email}
+            onChange={(e) =>
+              setUpdateUser({ ...updateUser, email: e.target.value })
+            }
+            className="rounded-lg shadow-lg p-2 bg-white hover:bg-gray-300 transition-all duration-300 text-black"
+          />
+
+          <button className="shadow-lg rouded-lg p-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-all duration-300">
+            Update
+          </button>
+        </form>
 
         {/* Display all users */}
 
