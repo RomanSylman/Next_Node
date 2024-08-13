@@ -114,7 +114,7 @@ export default function Home() {
 
         <form
           onSubmit={handleUpdateUser}
-          className="space-y-2 w-full flex flex-col p-4 bg-green-100 rounded shadow-lg"
+          className="space-y-2 w-full flex flex-col gap-3 p-4 bg-green-100 rounded shadow-lg"
         >
           <input
             placeholder="User ID"
